@@ -32,6 +32,8 @@ public class DragFunction : MonoBehaviour
 
         if (isDragging && Input.GetMouseButtonUp(0))
         {
+            currentPrefab.GetComponent<BoxCollider2D>().enabled = true;
+            currentPrefab = null;
             isDragging = false;
         }
     }
