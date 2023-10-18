@@ -1,4 +1,1 @@
-# CS4393-Tower-Defense
-
-Group Members:
-Noah M
+# CS4423-Tower-Defense
