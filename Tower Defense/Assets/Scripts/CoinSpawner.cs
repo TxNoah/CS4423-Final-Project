@@ -7,7 +7,7 @@ public class CoinSpawner : MonoBehaviour
     public GameObject coinz;
 
     void Start() {
-        InvokeRepeating("Spawn", 3, 3);
+        InvokeRepeating("Spawn", 5, 5);
     }
 
     void Spawn() {
