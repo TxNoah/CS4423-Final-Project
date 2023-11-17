@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83981c3f3103f5943b7bad16a473687c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zom_speed: 1
+  zom_speed: 1.4
   maxHealth: 3
   move: 1
 --- !u!61 &1135641094369960961
