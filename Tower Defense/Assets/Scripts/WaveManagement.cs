@@ -9,39 +9,39 @@ public class WaveManagement : MonoBehaviour
     [SerializeField] float maxWaveDelay = 6f;
     [SerializeField] float spawnSpeedIncrease = 0.1f;
     [SerializeField] Zombie[] zombiePrefab;
-    [SerializeField] float setupTime = 5f; // Setup time before the next wave
-    [SerializeField] int zombiesPerWave = 5; // Number of zombies per wave
+    [SerializeField] float setupTime = 5f; 
+    [SerializeField] int zombiesPerWave = 5; 
 
-    public TextMeshProUGUI waveCounterText; // Reference to TextMeshPro text component
-    public TextMeshProUGUI waveStartTimerText; // Reference to TextMeshPro text component for timer
+    public TextMeshProUGUI waveCounterText; 
+    public TextMeshProUGUI waveStartTimerText; 
 
     bool spawn = true;
     int waveCounter = 0;
 
     public Transform[] spawnPositions;
-    int spawnPoints = 1; // Initial number of spawn points
+    int spawnPoints = 1; 
 
     IEnumerator Start()
     {
         yield return new WaitForSeconds(initialDelay);
         while (spawn)
         {
-            UpdateWaveCounterText(); // Update wave counter text
-            yield return StartCoroutine(StartWaveTimer()); // Display the timer before starting the wave
+            UpdateWaveCounterText(); 
+            yield return StartCoroutine(StartWaveTimer()); 
             SpawnWave();
             waveCounter++;
-            yield return StartCoroutine(WaitForWaveCompletion()); // Wait until all zombies are eliminated
-            yield return new WaitForSeconds(setupTime); // Give the user setup time
-            minWaveDelay -= spawnSpeedIncrease; // Increase spawn speed for the next wave
+            yield return StartCoroutine(WaitForWaveCompletion()); 
+            yield return new WaitForSeconds(setupTime); 
+            minWaveDelay -= spawnSpeedIncrease; 
             maxWaveDelay -= spawnSpeedIncrease;
 
-            // Increase spawn points every three levels
+            
             if (waveCounter % 2 == 0)
             {
                 spawnPoints++;
             }
 
-            zombiesPerWave += 2; // Increase the number of zombies for the next wave
+            zombiesPerWave += 2; 
         }
     }
 
@@ -54,12 +54,12 @@ public class WaveManagement : MonoBehaviour
             timer -= Time.deltaTime;
             yield return null;
         }
-        waveStartTimerText.text = ""; // Hide the timer text after the countdown finishes
+        waveStartTimerText.text = "";
     }
 
     IEnumerator WaitForWaveCompletion()
     {
-        while (GameObject.FindObjectOfType<Zombie>() != null) // Check if any zombies are remaining
+        while (GameObject.FindObjectOfType<Zombie>() != null) 
         {
             yield return null;
         }
@@ -77,7 +77,7 @@ public class WaveManagement : MonoBehaviour
         {
             int randomZombieIndex = Random.Range(0, zombiePrefab.Length);
             Zombie randomZombie = zombiePrefab[randomZombieIndex];
-            int spawnPointIndex = Random.Range(0, spawnPoints); // Select random spawn point
+            int spawnPointIndex = Random.Range(0, spawnPoints); 
             SpawnAttacker(randomZombie, spawnPointIndex);
         }
     }
@@ -90,7 +90,7 @@ public class WaveManagement : MonoBehaviour
             return;
         }
 
-        // Instantiate the attacker at the specified spawn point index
+        
         Transform selectedSpawnPoint = spawnPositions[spawnPointIndex];
         Zombie newAttacker = Instantiate(myAttacker, selectedSpawnPoint.position, selectedSpawnPoint.rotation);
         newAttacker.transform.parent = selectedSpawnPoint;

@@ -8,7 +8,7 @@ public class CoinCollection : MonoBehaviour
 {
     public Text scoreText;
 
-    private int score = 300;
+    private int score = 600;
 
     private void Start(){
 

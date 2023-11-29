@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zom_speed: 0.7
-  maxHealth: 5
+  maxHealth: 4
   move: 1
 --- !u!61 &5928391438767536628
 BoxCollider2D:

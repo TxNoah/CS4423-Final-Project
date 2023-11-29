@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83981c3f3103f5943b7bad16a473687c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zom_speed: 1
-  maxHealth: 5
+  zom_speed: 0.9
+  maxHealth: 4
   move: 1
 --- !u!61 &3813194747754898459
 BoxCollider2D:

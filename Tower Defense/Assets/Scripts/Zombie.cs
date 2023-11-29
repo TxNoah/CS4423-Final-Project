@@ -1,23 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))] // This ensures that a Rigidbody component is added automatically if not present
 public class Zombie : MonoBehaviour
 {
     [SerializeField] float zom_speed;
     [SerializeField] int maxHealth = 0;
     private int currentHealth;
     public bool move;
+    public int damage = 10;
 
-    void Start(){
+    void Start()
+    {
         currentHealth = maxHealth;
     }
 
     void Update()
     {
-        if(this.move){
+        if (this.move)
+        {
             this.transform.Translate(Vector3.left * this.zom_speed * Time.deltaTime);
-        }        
+        }
     }
 
     public void TakeDamage(int damage)
@@ -35,11 +37,9 @@ public class Zombie : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+    public void AttackTower(Tower tower)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(collision.gameObject);
-        }
+        tower.TakeDamage(damage);
     }
 }

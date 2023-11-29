@@ -7,6 +7,8 @@ TagManager:
   - Plant
   - Zombie
   - Coin
+  - MasterVolume
+  - SoundEffectsVolume
   layers:
   - Default
   - TransparentFX
