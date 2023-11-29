@@ -15,11 +15,24 @@ public class WaveManagement : MonoBehaviour
     public TextMeshProUGUI waveCounterText; 
     public TextMeshProUGUI waveStartTimerText; 
 
+    public AudioClip waveCounterAudioClip; // Add your audio clip here for wave counter
+    private AudioSource audioSource;
+
     bool spawn = true;
     int waveCounter = 0;
 
     public Transform[] spawnPositions;
     int spawnPoints = 1; 
+
+    void Awake()
+    {
+        // Get or add an AudioSource component during Awake
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
 
     IEnumerator Start()
     {
@@ -95,13 +108,28 @@ public class WaveManagement : MonoBehaviour
         Zombie newAttacker = Instantiate(myAttacker, selectedSpawnPoint.position, selectedSpawnPoint.rotation);
         newAttacker.transform.parent = selectedSpawnPoint;
     }
-
+    
 
     void UpdateWaveCounterText()
     {
         if (waveCounterText != null)
         {
             waveCounterText.text = "Wave: " + waveCounter.ToString();
+            PlayWaveCounterAudio();
+        }
+
+    }
+
+    void PlayWaveCounterAudio()
+    {
+        if (waveCounterAudioClip != null && audioSource != null)
+        {
+            audioSource.clip = waveCounterAudioClip;
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Wave counter audio clip or AudioSource not set!");
         }
     }
 }
